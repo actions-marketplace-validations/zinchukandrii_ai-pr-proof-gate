@@ -28,5 +28,5 @@ outputs:
   manifest-json:
     description: Workspace-relative path to the generated manifest in auto mode
 runs:
-  using: node20
+  using: node24
   main: dist-action/index.js
