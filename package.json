@@ -6,7 +6,7 @@
   "description": "Deterministic evidence-contract gate for human and AI-generated pull requests.",
   "license": "MIT",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.22.2"
   },
   "scripts": {
     "dev": "vite",

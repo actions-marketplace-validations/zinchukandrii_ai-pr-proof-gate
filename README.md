@@ -25,7 +25,7 @@ Danger automates team-specific review conventions, reviewdog maps linter output 
 
 ## Local development
 
-Requires Node.js 20+.
+Local development and tests require Node.js 22.22.2+. The bundled GitHub Action entrypoint itself runs on GitHub's Node.js 20 action runtime.
 
 ```bash
 npm ci

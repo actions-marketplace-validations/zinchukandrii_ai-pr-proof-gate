@@ -17,10 +17,10 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Use Node.js 20
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4, pinned full SHA
         with:
-          node-version: 20
+          node-version: 22.22.2
           cache: npm
 
       - name: Install dependencies
