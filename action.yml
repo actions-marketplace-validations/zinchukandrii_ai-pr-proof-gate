@@ -1,0 +1,32 @@
+name: AI PR Proof Gate
+description: Fail-closed evidence-contract validation for pull requests
+branding:
+  icon: shield
+  color: green
+inputs:
+  mode:
+    description: manual reads the manifest input; auto derives a manifest from a pull_request event and local git diff
+    required: false
+    default: manual
+  manifest:
+    description: Workspace-relative path to a proofgate manifest
+    required: false
+    default: proofgate-manifest.json
+  config:
+    description: Workspace-relative path to .proofgate.json in auto mode
+    required: false
+    default: .proofgate.json
+  report-dir:
+    description: Workspace-relative directory for JSON and Markdown receipts
+    required: false
+    default: .proofgate
+outputs:
+  decision:
+    description: PASS, REVIEW_REQUIRED, or BLOCKED
+  report-json:
+    description: Workspace-relative path to the JSON receipt
+  manifest-json:
+    description: Workspace-relative path to the generated manifest in auto mode
+runs:
+  using: node20
+  main: dist-action/index.js

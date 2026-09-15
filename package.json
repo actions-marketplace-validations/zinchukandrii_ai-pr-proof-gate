@@ -1,0 +1,46 @@
+{
+  "name": "ai-pr-proof-gate",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic evidence-contract gate for human and AI-generated pull requests.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vite",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --pool=vmThreads --maxWorkers=1",
+    "test:watch": "vitest --pool=vmThreads --maxWorkers=1",
+    "build:app": "vite build",
+    "build:action": "esbuild src/action.ts --bundle --platform=node --format=esm --target=node20 --outfile=dist-action/index.js",
+    "build": "npm run typecheck && npm run build:app && npm run build:action",
+    "cli": "tsx src/cli.ts",
+    "cli:smoke": "tsx src/cli.ts --fixture safe --json-out .tmp/cli/proofgate-report.json --markdown-out .tmp/cli/proofgate-report.md",
+    "action:smoke": "node scripts/action-smoke.mjs",
+    "action:auto-smoke": "node scripts/action-auto-smoke.mjs"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^26.5.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.70.0",
+    "@typescript-eslint/parser": "^8.70.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.10.0",
+    "jsdom": "^30.0.1",
+    "tsx": "^4.23.13",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.0"
+  }
+}

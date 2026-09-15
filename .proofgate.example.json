@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "declaredScope": [
+    "src/**",
+    "tests/**",
+    "docs/**"
+  ],
+  "requiredChecks": [
+    {
+      "id": "tests",
+      "evidenceFile": ".proofgate-evidence/tests.json"
+    }
+  ],
+  "riskFlags": []
+}

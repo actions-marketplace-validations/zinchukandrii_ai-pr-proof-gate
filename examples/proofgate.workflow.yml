@@ -1,0 +1,52 @@
+name: Proof Gate example
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  proof-gate:
+    name: ai-pr-proof-gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run project tests
+        run: npm test
+
+      - name: Record bounded test evidence
+        run: |
+          mkdir -p .proofgate-evidence
+          printf '%s\n' '{"status":"pass","kind":"test-report","summary":"Project test command completed successfully."}' > .proofgate-evidence/tests.json
+
+      - name: Evaluate pull request evidence contract
+        id: proofgate
+        uses: ./
+        with:
+          mode: auto
+          config: .proofgate.json
+          report-dir: .proofgate
+
+      - name: Preserve proof-gate receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: proofgate-receipts
+          path: .proofgate/
+          if-no-files-found: warn
+          retention-days: 7

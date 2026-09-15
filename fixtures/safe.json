@@ -1,0 +1,22 @@
+{
+  "version": "1",
+  "repository": "example/maintainer-tool",
+  "pullRequestNumber": 42,
+  "title": "Add deterministic parser coverage",
+  "declaredScope": ["src/**", "tests/**"],
+  "changedFiles": [
+    {"path": "src/parser.ts", "additions": 38, "deletions": 4},
+    {"path": "tests/parser.test.ts", "additions": 64, "deletions": 0}
+  ],
+  "checks": [
+    {"id": "tests", "status": "pass", "commandLabel": "npm test", "evidenceId": "ev-tests"},
+    {"id": "typecheck", "status": "pass", "commandLabel": "npm run typecheck", "evidenceId": "ev-types"}
+  ],
+  "authorType": "human",
+  "riskFlags": [],
+  "evidence": [
+    {"id": "ev-tests", "kind": "test-report", "summary": "Behavior tests passed."},
+    {"id": "ev-types", "kind": "typecheck", "summary": "TypeScript completed without errors."}
+  ],
+  "approvals": []
+}

@@ -1,0 +1,19 @@
+{
+  "version": "1",
+  "repository": "example/maintainer-tool",
+  "pullRequestNumber": 43,
+  "title": "Unexpected release workflow change",
+  "declaredScope": ["src/**"],
+  "changedFiles": [
+    {"path": ".github/workflows/release.yml", "additions": 18, "deletions": 2}
+  ],
+  "checks": [
+    {"id": "tests", "status": "fail", "commandLabel": "npm test", "evidenceId": "ev-tests"}
+  ],
+  "authorType": "automation",
+  "riskFlags": ["release"],
+  "evidence": [
+    {"id": "ev-tests", "kind": "test-report", "summary": "Regression test failed."}
+  ],
+  "approvals": []
+}
