@@ -68,6 +68,19 @@ npm run action:smoke
 
 See [`examples/proofgate.workflow.yml`](examples/proofgate.workflow.yml). The action supports manual manifest mode (the default) and bounded `auto` mode. Auto mode reads `GITHUB_EVENT_PATH`, accepts only `pull_request` events with exact 40-hex base/head SHAs, calculates a local merge-base diff through argv-only Git calls, writes the generated manifest, and sends no repository data over the network.
 
+For a consumer repository, pin the release tag and use auto mode after checking out full history:
+
+```yaml
+- name: Evaluate pull request evidence contract
+  uses: zinchukandrii/ai-pr-proof-gate@v0.1.0
+  with:
+    mode: auto
+    config: .proofgate.json
+    report-dir: .proofgate
+```
+
+The complete example also installs dependencies, runs tests, records bounded evidence, and retains the generated receipts.
+
 The example deliberately uses:
 
 - `permissions: contents: read`;
@@ -108,7 +121,7 @@ See [`SECURITY.md`](SECURITY.md) for disclosure and threat-model details.
 - Auto mode requires checkout history containing the base and head commits. The example uses `fetch-depth: 0` for the first deterministic release.
 - Glob support is intentionally limited to `*` and `**`.
 - SARIF, artifact attestations, policy files, Marketplace publication, network integrations, and hosted storage are future possibilities—not current features.
-- This release candidate has not yet been validated with external maintainers; live GitHub validation is tracked separately from local test results.
+- Same-repository live GitHub PR validation is complete. External-maintainer and external-fork validation remain pending.
 
 ## Research basis
 
