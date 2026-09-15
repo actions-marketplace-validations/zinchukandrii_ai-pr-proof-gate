@@ -81,6 +81,8 @@ For a consumer repository, pin the release tag and use auto mode after checking 
 
 The complete example also installs dependencies, runs tests, records bounded evidence, and retains the generated receipts.
 
+The released Action is available in [GitHub Marketplace](https://github.com/marketplace/actions/ai-pr-proof-gate).
+
 The example deliberately uses:
 
 - `permissions: contents: read`;
@@ -120,8 +122,8 @@ See [`SECURITY.md`](SECURITY.md) for disclosure and threat-model details.
 
 - Auto mode requires checkout history containing the base and head commits. The example uses `fetch-depth: 0` for the first deterministic release.
 - Glob support is intentionally limited to `*` and `**`.
-- SARIF, artifact attestations, policy files, Marketplace publication, network integrations, and hosted storage are future possibilities—not current features.
-- Same-repository live GitHub PR validation is complete. External-maintainer and external-fork validation remain pending.
+- SARIF, artifact attestations, policy files, network integrations, and hosted storage are future possibilities—not current features.
+- Same-repository and separate consumer-repository live GitHub PR validation are complete. External-maintainer and independently owned fork validation remain pending.
 
 ## Research basis
 
